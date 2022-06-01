@@ -1,0 +1,142 @@
+@mixin color_w() {
+  color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(https://www.universities.guru/wp-content/uploads/2020/10/Lviv-Polytechnic-National-University-2-scaled.jpg);
+  height: 100vh;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+}
+.log {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 100px;
+  width: 1170px;
+  margin: auto;
+}
+.login {
+  text-align: center;
+  h1 {
+    @include color_w();
+    text-transform: uppercase;
+    font-size: 60px;
+  }
+}
+
+.wrapper-top {
+  height: 100px;
+  max-width: 1170px;
+  margin: auto;
+}
+
+.nav-area-r {
+  float: right;
+  list-style: none;
+  margin-top: 30px;
+}
+
+.nav-area-l {
+  float: left;
+  list-style: none;
+  margin-top: 30px;
+}
+
+.nav-area-li {
+  display: inline-block;
+
+  a {
+    @include color_w();
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+
+    &:hover {
+      background: #fff;
+      color: #333;
+    }
+  }
+}
+
+.box-log {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 40px;
+  @include color_w();
+  text-align: center;
+
+  input,
+  a {
+    border-color: #333;
+    border-width: 2px;
+    @include color_w();
+    border-radius: 0.375rem;
+    border: 1px solid #cad1d7;
+    background-color: transparent;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 10px;
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  input[type="submit"],
+  a {
+    @include color_w();
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  input:hover {
+    background: #fff;
+    color: #333;
+  }
+  a:hover {
+    background: #fff;
+    color: #333;
+  }
+}
+
+@media (max-width: 1370px) {
+  body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+@media (orientation: portrait) {
+  .nav-area-li a {
+    font-size: 50px;
+  }
+  .box-log input {
+    font-size: 50px;
+  }
+  .box-log input[type="submit"] {
+    font-size: 40px;
+  }
+  .box-log a {
+    font-size: 40px;
+  }
+  .log {
+    margin-top: 400px;
+  }
+}

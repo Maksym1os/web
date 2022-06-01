@@ -1,0 +1,88 @@
+@import url("user.css");
+
+@import url("framework.css");
+
+@mixin orange() {
+  background-color: #ea5616;
+  border-color: #ea5616;
+}
+.container {
+  padding: 100px 0;
+  margin-left: 200px;
+}
+.container-aud {
+  margin-top: 0;
+  margin-left: 200px;
+}
+.sidebar .sdb_holder {
+  margin-bottom: 50px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.btns {
+  width: 200px;
+  display: inline-block;
+}
+
+#scrolling-aud {
+  height: 540px;
+  overflow: auto;
+  margin-top: 20px;
+  padding-top: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+a {
+  color: #ea5616;
+
+  &:hover {
+    background: transparent;
+    color: #ffffff;
+  }
+}
+
+input:focus,
+textarea:focus,
+*:required:focus {
+  border-color: #ea5616;
+}
+
+.btn {
+  color: #ffffff;
+  @include orange();
+
+  &.inverse:hover {
+    color: #ffffff;
+    @include orange();
+  }
+
+  &:hover,
+  &.inverse {
+    color: inherit;
+    background-color: transparent;
+    border-color: inherit;
+  }
+}
+@media (max-width: 1370px) {
+  body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+@media (orientation: portrait) {
+  .container-aud {
+    margin-left: 20px;
+  }
+  .container {
+    padding: auto;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Auditorium</title>
+    <link rel="stylesheet" href="../css/layout.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrapper-top">
+        <ul>
+          <li class="nav-area-l nav-area-li"><a href="home.html">Home</a></li>
+          <li class="nav-area-r nav-area-li"><a href="user.html">User</a></li>
+          <li class="nav-area-r nav-area-li">
+            <a href="login.html">Log in</a>
+          </li>
+          <li class="nav-area-r nav-area-li">
+            <a href="service.html">Service</a>
+          </li>
+        </ul>
+
+        <div class="hoc container clear">
+          <div>
+            <div class="one_half first">
+              <h6 class="heading">
+                There all information about chosen auditorium
+              </h6>
+              <p>Opened in 1988. Polytechnic University.</p>
+              <p class="btmspace-30">Nothing special</p>
+              <footer>
+                <p class="btmspace-5">Reserve on hours:</p>
+                <p class="btmspace-15">
+                  <input
+                    type="range"
+                    min="1"
+                    max="120"
+                    value="1"
+                    onchange="document.getElementById('rangeValue').innerHTML = this.value;"
+                    list="rangeList"
+                  />
+                  <span id="rangeValue">1</span>
+                </p>
+                <a class="btn" href="#">Choose &raquo;</a>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <img
+          class="img"
+          src="https://s.pfst.net/2015.08/822545665672298f66b34724d267c0f3bf2b68adbbc5_b.jpg"
+          alt="Audience"
+          width="300"
+          height="200"
+        />
+      </div>
+    </header>
+  </body>
+</html>
