@@ -1,12 +1,15 @@
 @mixin color_w() {
   color: #fff;
 }
+
 @mixin backgr_hoov() {
   background: #fff;
 }
+
 @mixin color_hoov() {
   color: #333;
 }
+
 *::-webkit-scrollbar {
   width: 6px;
 }
@@ -19,6 +22,7 @@
   background-color: #fff;
   border-radius: 10px;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -113,19 +117,40 @@ body {
 }
 
 
-.Balance{
+.Balance {
 
   position: absolute;
   margin-left: 73%;
   margin-top: -3%;
   @include color_w();
   text-align: center;
-  h1 {
 
-  }
+  h1 {}
 }
 
-.logs{
+.BalanceService {
+
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 10%;
+  @include color_w();
+  text-align: center;
+  
+  
+
+  .box{
+    
+    position: relative;
+    margin-top: 35%;
+    max-width: 300px;
+
+  
+  }
+  
+
+}
+
+.logs {
   overflow: auto;
   margin-left: 70%;
   margin-top: 10%;
@@ -193,6 +218,7 @@ body {
     @include color_hoov();
   }
 }
+
 @media (max-width: 1370px) {
   body {
     background-repeat: no-repeat;
@@ -205,18 +231,23 @@ body {
   .nav-area-li a {
     font-size: 50px;
   }
+
   .box input {
     font-size: 50px;
   }
+
   .box input[type="submit"] {
     font-size: 40px;
   }
+
   .welcome-text a {
     font-size: 40px;
   }
+
   .welcome-text h1 {
     font-size: 80px;
   }
+
   .welcome-text {
     margin-top: 500px;
   }

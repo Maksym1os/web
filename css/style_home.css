@@ -87,6 +87,17 @@ body {
   color: #fff;
   text-align: center; }
 
+.BalanceService {
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 10%;
+  color: #fff;
+  text-align: center; }
+  .BalanceService .box {
+    position: relative;
+    margin-top: 35%;
+    max-width: 300px; }
+
 .logs {
   overflow: auto;
   margin-left: 70%;
