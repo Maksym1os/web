@@ -3,6 +3,7 @@ const Dao = require('./Dao')
 const {expressjwt: jwt} = require("express-jwt");
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
+const cors = require('cors');
 
 const saltRounds = 10
 const secret = "secret"
@@ -14,6 +15,7 @@ const adminRole = "admin"
 const app = express()
 
 app.use(express.json())
+app.use(cors());
 
 app.post('/signup', (req, res) => {
     const user = {
