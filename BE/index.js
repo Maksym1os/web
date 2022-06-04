@@ -20,7 +20,7 @@ app.post('/signup', (req, res) => {
         username: req.body.username,
         email: req.body.email,
         phone: req.body.phone,
-        amount: req.body.amount,
+        amount: parseInt(req.body.amount),
         password: bcrypt.hashSync(req.body.password, saltRounds),
         role: userRole
     }
@@ -48,7 +48,7 @@ app.get('/users',
             .then(users => res.status(200).send(users.map(user => {
                 return {
                     username: user.username,
-                    role: user.role
+                    amount: user.amount
                 }
             })))
             .catch(err => console.error(err))
@@ -59,8 +59,7 @@ app.put('/user',
     jwt({secret: secret, algorithms: ["HS256"]}),
     (req, res) => {
         Dao.updateUser(req.query.username, {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName
+            amount: parseInt(req.body.amount)
         })
             .then(_ => res.sendStatus(200))
             .catch(err => console.error(err))
@@ -109,5 +108,60 @@ app.post('/login', (req, res) => {
         ).catch(err => console.error(err))
 })
 
+
+app.post('/transact',
+    jwt({secret: secret, algorithms: ["HS256"]}),
+    (req, res) => {
+        Dao.getUserByUsername(req.auth.username)
+            .then(user => {
+                Dao.getUserByUsername(req.body.recipient)
+                .then(recipient => {
+                    const amount = parseInt(req.body.amount)
+                
+                    if (user !== null && user.amount >= amount && recipient !== null){
+                        Dao.addTransaction({
+                            time: Date.now(),
+                            recipient: recipient.username,
+                            sender: user.username,
+                            amount: amount
+                        })
+    
+                        Dao.updateUser(user.username, {
+                            amount: user.amount - amount
+                        })
+                        Dao.updateUser(recipient.username, {
+                            amount: recipient.amount + amount
+                        })
+    
+                        res.sendStatus(200)
+                    }
+                    else{
+                        res.sendStatus(400)
+                    }
+                })
+                
+            })
+        
+    }
+)
+
+app.get('/transactions',
+    jwt({secret: secret, algorithms: ["HS256"]}),
+    (req, res) => {
+        Dao.getAllTransactions()
+            .then(users => res.status(200).send(users))
+            .catch(err => console.error(err))
+    }
+)
+
+app.get('/deleteAll',
+    jwt({secret: secret, algorithms: ["HS256"]}),
+    (req, res) => {
+        Dao.deleteAllUsers()
+        Dao.deleteAllTransactions()
+        
+        res.sendStatus(200)
+    }
+)
 
 app.listen(3000, () => console.log("Start..."))

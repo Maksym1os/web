@@ -15,6 +15,17 @@ Content-Type: application/json
   "password": "qwerty",
   "amount": "1000"
 }
+###
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+  "username": "danylo",
+  "email": "9sarvas9@gmail.com",
+  "phone": "76739549656",
+  "password": "asdfggh",
+  "amount": "100"
+}
 
 ###
 POST http://localhost:3000/login
@@ -46,3 +57,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlb
 DELETE http://localhost:3000/user?username=Maksym_Los
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc
+
+###
+POST http://localhost:3000/transact
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ha3N5bV9Mb3MiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NDM2MTIyNn0.aEcJJZ3eX2Sq4dxLOTwScORpdG2gn-m_NNFnfPipzBQ
+
+{
+  "recipient": "danylo",
+  "amount": 600
+}
+
+###
+GET http://localhost:3000/transactions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc
+###
+GET http://localhost:3000/deleteAll
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc
+
+###

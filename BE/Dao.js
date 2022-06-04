@@ -30,11 +30,18 @@ class Dao {
 
     deleteUser = username => this.ifConnected(db => db.collection('user').findOneAndDelete({username}))
 
+    deleteAllUsers = _ => this.ifConnected(db => db.collection('user').deleteMany({}))
+    deleteAllTransactions = _ => this.ifConnected(db => db.collection('transactions').deleteMany({}))
+
     getUserByUsername = username => this.ifConnected(db => db.collection('user').findOne({username: username}))
 
     getAllUsers = () => this.ifConnected(db => db.collection('user').find({}).toArray())
 
+    getAllTransactions = () => this.ifConnected(db => db.collection('transactions').find({}).toArray())
+
     ifConnected = dbAction => this.dbConnection ? this.dbConnection.then(dbAction) : Promise.reject('not connected')
+
+    addTransaction = record => this.ifConnected(db => db.collection('transactions').insertOne(record))
 
 }
 
