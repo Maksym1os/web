@@ -4,13 +4,13 @@ fetch("http://localhost:3000/signup", {
     "user-agent": "vscode-restclient",
     "content-type": "application/json"
   },
-  "body": {
+  "body": JSON.stringify({
     "username": "Maksym_Los",
     "email": "maxlos@gmail.com",
     "phone": "88005553535",
     "password": "qwerty",
     "amount": "1000"
-  }
+  })
 })
 .then(response => {
   console.log(response);
@@ -25,10 +25,10 @@ fetch("http://localhost:3000/login", {
     "user-agent": "vscode-restclient",
     "content-type": "application/json"
   },
-  "body": {
+  "body": JSON.stringify({
     "username": "Maksym_Los",
     "password": "qwerty"
-  }
+  })
 })
 .then(response => {
   console.log(response);
