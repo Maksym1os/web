@@ -10,8 +10,6 @@ const secret = "secret"
 const userRole = "user"
 const adminRole = "admin"
 
-const articlePosted = "posted"
-const articleEdited = "edited"
 
 const app = express()
 
@@ -20,6 +18,9 @@ app.use(express.json())
 app.post('/signup', (req, res) => {
     const user = {
         username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        amount: req.body.amount,
         password: bcrypt.hashSync(req.body.password, saltRounds),
         role: userRole
     }
@@ -81,6 +82,8 @@ app.post('/user',
         if (req.auth.role === adminRole) {
             const user = {
                 username: req.body.username,
+                email: req.body.email,
+                phone: req.body.phone,
                 password: bcrypt.hashSync(req.body.password, saltRounds),
                 role: userRole
             }
@@ -106,65 +109,5 @@ app.post('/login', (req, res) => {
         ).catch(err => console.error(err))
 })
 
-app.post('/article',
-    jwt({secret: secret, algorithms: ["HS256"]}),
-    (req, res) => {
-        if (req.body.body.length > 2000) {
-            return res.sendStatus(400)
-        }
-        const article = {
-            header: req.body.header,
-            body: req.body.body,
-            author: req.auth.username,
-            type: articlePosted
-        }
-        Dao.addArticle(article)
-            .then(_ => res.sendStatus(200))
-            .catch(err => console.error(err))
-    })
-
-app.get('/articles',
-    (req, res) => {
-        Dao.getAllArticles()
-            .then(articles => res.status(200).send(articles))
-            .catch(err => console.error(err))
-    })
-
-app.delete('/article',
-    jwt({secret: secret, algorithms: ["HS256"]}),
-    (req, res) => {
-        Dao.deleteArticleByHeader(req.query.header)
-            .then(_ => res.sendStatus(200))
-            .catch(err => console.error(err))
-    })
-
-app.put('/article',
-    jwt({secret: secret, algorithms: ["HS256"]}),
-    (req, res) => {
-        Dao.getArticleByHeader(req.body.header)
-            .then(article => Dao.addArticle({
-                header: article.header,
-                body: req.body.body,
-                author: req.auth.username,
-                type: articleEdited
-            }))
-            .then(_ => res.sendStatus(200))
-            .catch(err => console.error(err))
-    })
-
-app.post('/article/approve',
-    jwt({secret: secret, algorithms: ["HS256"]}),
-    (req, res) => {
-        if (req.auth.role === adminRole) {
-            Dao.deleteByHeaderAndUsername(req.query.header, req.query.username)
-                .then(_ => Dao.updateArticleType(req.query.header, req.query.username, articlePosted)
-                    .then(_ => res.sendStatus(200))
-                    .catch(err => console.error(err))
-                )
-        } else {
-            res.sendStatus(403)
-        }
-    }
-)
 
 app.listen(3000, () => console.log("Start..."))
