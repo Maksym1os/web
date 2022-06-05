@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { db } from '../firebase';
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import moment from "moment";
 import { CircularProgress, Snackbar } from "@material-ui/core";
-
-
+import { AuthContext } from "./Context";
+import API from "../API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,46 +51,58 @@ export default function Transfer() {
   const [sender, setSender] = useState("");
   const [reciver, setReciver] = useState("");
   const [amt, setAmt] = useState(0);
-  const [status, setStatus] = useState("done");
   const [loading, setLoading] = useState(false);
 
   const [alert, setAlert] = useState({ open: false, color: "" });
   const [alertMessage, setAlertMesssage] = useState("");
 
-  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+  const { jwt } = useContext(AuthContext)
+
 
   useEffect(() => {
     const getDataFromFirebase = [];
-    const subscriber = db.collection('users').onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        getDataFromFirebase.push({ ...doc.data(), key: doc.id });
+    API.getAllUsers().then(querySnapshot => {
+      querySnapshot.data.map(({_id, username}) => {
+        getDataFromFirebase.push({ username, key: _id });
       });
-      setPosts(getDataFromFirebase);
+      setUsers(getDataFromFirebase);
     });
-    return () => subscriber();
   }, [])
 
   const sendToTransfer = async () => {
-    db.collection("users").doc("transfer").collection("lists").add({
-      from: sender,
-      to: reciver,
-      amount: amt,
-      status: status,
-      time: moment().valueOf().toString()
-    })
+    
+    API.postTransaction(jwt, reciver.username, amt)
+      .then(() => {
+        setAlert({ open: true, color: "#4BB543" });
+        setAlertMesssage("Money Transferred Successfully !!!!");
+
+      }).catch((error) => {
+        setAlert({ open: true, color: "#FF3232" });
+        setAlertMesssage("Something went wrong! Please try again.");
+      })
+        .finally(setLoading(false));
+    
+    
   }
 
   const transferMoney = async (e) => {
+    if (!jwt){
+      setAlert({ open: true, color: "#FF3232" });
+      setAlertMesssage("You are not authorized");
+    }
+
+
     e.preventDefault();
     setLoading(true);
 
-    var rusr = posts.filter(p => { return p.email === reciver });
+    var rusr = users.filter(p => { return p.username === reciver });
     console.log('sender account:', rusr[0].amount);
 
-    var susr = posts.filter(p => { return p.email === sender });
+    var susr = users.filter(p => { return p.username === sender });
     console.log('recvier accunt:', susr[0].amount);
 
-    if (susr[0].email === rusr[0].email) {
+    if (susr[0].username === rusr[0].username) {
       setLoading(false);
       setAlert({ open: true, color: "#FF3232" });
       setAlertMesssage("Both Sender and Reciver cant be same.");
@@ -103,34 +113,17 @@ export default function Transfer() {
       setAlertMesssage("Sender dont have enough funds.");
     }
     else {
-      setStatus('Done')
-      var ramt = parseFloat(rusr[0].amount) + parseFloat(amt);
-      var sena = parseFloat(susr[0].amount) - parseFloat(amt);
-      var sup = await db.collection("users").doc(susr[0].key).update({
-        amount: parseFloat(sena)
-      })
-      var rup = await db.collection("users").doc(rusr[0].key).update({
-        amount: parseFloat(ramt)
-      }).then(() => {
-        setLoading(false);
-        setAlert({ open: true, color: "#4BB543" });
-        setAlertMesssage("Money Transferred Successfully !!!!");
 
-
-      }).catch((error) => {
-        setLoading(false);
-        setAlert({ open: true, color: "#FF3232" });
-        setAlertMesssage("Something went wrong! Please try again.");
-      });
-      window.location.reload();
+      // setAlert({ open: true, color: "#FF3232" });
+      // setAlertMesssage(reciver);
+      sendToTransfer()
+      
+      // window.location.reload();
       setAmt(0);
       setReciver("");
       setSender("");
 
 
-      console.log('reupdate:', rup);
-      console.log('seupdate:', sup);
-      sendToTransfer();
     }
   }
   const onAmountChange = (e) => {
@@ -184,8 +177,8 @@ export default function Transfer() {
                   label="From"
                 >
                   <option aria-label="None" value="" />
-                  {posts.map((data) => {
-                    return (<option key={Math.random().toString(36).substr(2, 9)}>{data.email}</option>)
+                  {users.map((data) => {
+                    return (<option key={Math.random().toString(36).substr(2, 9)}>{data.username}</option>)
                   })}
                 </Select>
               </FormControl>
@@ -202,8 +195,8 @@ export default function Transfer() {
                   label="From"
                 >
                   <option aria-label="None" value="" />
-                  {posts.map((data) => {
-                    return (<option key={Math.random().toString(36).substr(2, 9)}>{data.email}</option>)
+                  {users.map((data) => {
+                    return (<option key={Math.random().toString(36).substr(2, 9)}>{data.username}</option>)
                   })}
                 </Select>
               </FormControl>

@@ -8,7 +8,15 @@ const API = {
         axios.post('/login', {username, password}),
     sendSignupRequest: (username, email, phone, amount, password) =>
         axios.post('/signup', {username, email, phone, amount, password}),
-
+    // postTransaction: (jwt, receiver, amount) =>
+    //     axios.post('/login', 
+    //     {
+    //         headers: {Authorization: `Bearer ${jwt}`}
+    //     },
+    //     {
+    //         body: {receiver, amount}
+    //     }
+    //     ),
     getAllHistory: () =>
         axios.get('/transactions'),
 
