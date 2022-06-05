@@ -68,23 +68,7 @@ const useStyles = makeStyles(theme=>({
             backgroundColor:theme.palette.secondary.light
         }
     },
-    // menu:{
-    //     backgroundColor:theme.palette.common.blue,
-    //     color:'white',
-    //     borderRadius:'0'
-    // },
-    // menuItem:{
-    //     ...theme.typography.tab,
-    //     opacity:'0.7',
-    //     '&:hover':{
-    //         opacity:'1'
-    //     }
-    // },
-    menu: {
-        backgroundColor: theme.palette.common.blue,
-        color: "white",
-        borderRadius: "0px"
-      },
+
       menuItem: {
         ...theme.typography.tab,
         opacity: 0.7,
@@ -102,9 +86,7 @@ const useStyles = makeStyles(theme=>({
             backgroundColor:'transparent'
         }
     },
-    drawer:{
-        backgroundColor:theme.palette.common.blue
-    },
+
     drawerItem:{
         ...theme.typography.tab,
         color:'white',
@@ -199,9 +181,6 @@ export default function Header(props){
                             component={Link}
                             to={route.link}
                             label={route.name}
-                            // aria-owns={route.ariaOwns}
-                            // aria-haspopup={route.ariaPopup}
-                            // onMouseOver={route.mouseOver}
                         />
                 ))}
             </Tabs>
