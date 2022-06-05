@@ -140,10 +140,10 @@ export default function Header(props){
    
     const routes = [
         {name:'Home',link:'/',activeIndex:0},
-        {name:'Users',link:'/users',activeIndex:1
-        }, 
-        {name:'Create User',link:'/create' ,activeIndex:2},
-        {name:'All Transcation',link:'/history',activeIndex:3},
+        {name:'Users',link:'/users',activeIndex:1}, 
+        {name:'All Transcation',link:'/history',activeIndex:2},
+        {name:'Register',link:'/create' ,activeIndex:3},
+        {name:'Login',link:'/login' ,activeIndex:4},
       
     ];
     useEffect(() => {

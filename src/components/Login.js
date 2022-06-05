@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function CreateUser() {
+export default function Login() {
 
     const classes = useStyles();
     const theme = useTheme();
@@ -47,25 +47,10 @@ export default function CreateUser() {
 
     const [name, setName] = useState('');
 
-    const [email, setEmail] = useState('');
-    const [emailHelper, setEmailHelper] = useState('');
-
-    const [phone, setPhone] = useState('');
-    const [phoneHelper, setPhoneHelper] = useState('');
-
-    const [amount, setAmount] = useState(0)
-
     const [loading, setLoading] = useState(false);
 
     const [alert, setAlert] = useState({ open: false, color: "" });
     const [alertMessage, setAlertMesssage] = useState("");
-
-    const onAmountChange = (e) => {
-        const amount = e.target.value;
-        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            setAmount(amount);
-        }
-    }
 
     const handlePasswordChange = (prop) => (event) => {
         setPassword({ ...passwordValues, [prop]: event.target.value });
@@ -79,37 +64,6 @@ export default function CreateUser() {
         event.preventDefault();
     };
 
-    const onChange = event => {
-        let valid;
-
-        switch (event.target.id) {
-            case 'email':
-                setEmail(event.target.value);
-                valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value);
-
-                if (!valid) {
-                    setEmailHelper('Invaild email');
-                } else {
-                    setEmailHelper('');
-                }
-                break;
-
-            case 'phone':
-                setPhone(event.target.value)
-                valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(event.target.value);
-
-                if (!valid) {
-                    setPhoneHelper('Invalid phone')
-                } else {
-                    setPhoneHelper('')
-                }
-                break;
-
-            default:
-                break;
-        }
-    }
-
     const buttonContents = (
         <React.Fragment>
             Submit
@@ -121,10 +75,7 @@ export default function CreateUser() {
         setLoading(true);
 
         db.collection("users").add({
-            name: name,
-            email: email,
-            phone: phone,
-            amount: amount
+            name: name
         }).then(() => {
             // alert("Details have been saved")
             setLoading(false);
@@ -137,9 +88,6 @@ export default function CreateUser() {
             setAlertMesssage("Something went wrong! Please try again.");
         });
         setName('');
-        setEmail('');
-        setPhone('');
-        setAmount('');
         setPassword('');
     }
 
@@ -162,7 +110,7 @@ export default function CreateUser() {
                             align='center'
                             style={{ lineHeight: 1 }}
                         >
-                            Create Account
+                            Log in
                         </Typography>
                     </Grid>
                     <Grid
@@ -183,74 +131,35 @@ export default function CreateUser() {
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </Grid>
-                        <Grid item style={{ marginBottom: '0.5em' }}>
-                            <Typography style={{ color: theme.palette.common.blue }}>Enter your E-mail</Typography>
-                            <TextField
-                                id="email"
-                                variant="outlined"
-                                fullWidth
-                                error={emailHelper.length !== 0}
-                                helperText={emailHelper}
-                                value={email}
-                                onChange={onChange}
-                            />
-                        </Grid>
-                        <Grid item style={{ marginBottom: '0.5em' }}>
-                            <Typography style={{ color: theme.palette.common.blue }}>Phone No.</Typography>
-                            <TextField
-                                id="phone"
-                                variant="outlined"
-                                fullWidth
-                                error={phoneHelper.length !== 0}
-                                helperText={phoneHelper}
-                                value={phone}
-                                onChange={onChange}
-                            />
-                        </Grid>
-                        <Grid item style={{ marginBottom: '0.5em' }}>
-                            <Typography style={{ color: theme.palette.common.blue }}>Amount </Typography>
-                            <TextField
-                                id="amount"
-                                variant="outlined"
-                                fullWidth
-                                value={amount}
-                                onChange={onAmountChange}
-                            />
-                        </Grid>
                         <Grid>
-                        <Typography htmlFor="standard-adornment-password">
-                            Enter your Password
-                        </Typography>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            type={passwordValues.showPassword ? "text" : "password"}
-                            onChange={handlePasswordChange("password")}
-                            value={passwordValues.password}
-                            InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {passwordValues.showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                        />
+                            <Typography htmlFor="standard-adornment-password">
+                                Enter your Password
+                            </Typography>
+                            <TextField
+                                variant="outlined"
+                                fullWidth
+                                type={passwordValues.showPassword ? "text" : "password"}
+                                onChange={handlePasswordChange("password")}
+                                value={passwordValues.password}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {passwordValues.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
                         </Grid>
 
                         <Grid item container justifyContent='center' style={{ marginTop: '2em' }}>
                             <Button
                                 disabled={
                                     name.length === 0 ||
-                                    email.length === 0 ||
-                                    phone.length === 0 ||
-                                    amount.length === 0 ||
-                                    emailHelper.length !== 0 ||
-                                    phoneHelper.length !== 0 ||
                                     passwordValues.password === 0
                                 }
                                 variant='contained'

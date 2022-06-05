@@ -2,6 +2,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import React , {useState} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CreateUser from './CreateUser';
+import Login from './Login';
 import History from './History';
 import Transfer from './Transfer';
 import Footer from './ui/Footer';
@@ -11,12 +12,15 @@ import Users from './Users';
 // import './ui/App.css'
 import './ui/History.css'
 import LandingPage from './LandingPage';
-// import AboutUs from './AboutUs';
+// import {AuthContext} from "./Context";
 
 function App() {
+  // const [jwt, setJwt] = useState('')
   const [value,setValue] = useState(0);
   const [selectedIndex,setSelectedIndex] = useState(0)
+
   return (
+    
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header value={value}
@@ -46,6 +50,11 @@ function App() {
           <Route exact path='/history' component={History} />
           <Route exact path='/transfer' component={Transfer} />
           <Route exact path='/create' component={CreateUser} />
+          <Route exact path='/login' component={Login} />
+                      {/* {
+                jwt !== '' ?
+                <Route exact path='/login' component={Login} /> : <Route/>
+            } */}
           {/* <Route exact path='/about' component={AboutUs} /> */}
          
           </Switch>

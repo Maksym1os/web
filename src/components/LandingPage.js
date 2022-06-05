@@ -94,58 +94,13 @@ export default function LandingPage(props){
                                     props.setValue(3)
                                 }}
                         >
-                        Create New Account
+                        Create Account
                         </Button>
                     </Grid>
                     
                     </Grid>
                 </Grid>
             </Grid>
-            {/* <Grid 
-                item 
-                container 
-                direction= 'row' 
-                justifyContent='center'
-                style={{marginTop:'10em' ,marginBottom:'10em'}}
-                className={classes.rowContainer}
-            >
-                <Grid   item 
-                        container 
-                        direction='column' 
-                        md 
-                        style={{maxWidth:'40em'}} 
-                        alignItems='center'
-                >
-                    <Grid item>
-                        <img src='https://image.flaticon.com/icons/png/128/181/181096.png' alt='lightbulb' />
-                    </Grid>
-                </Grid>
-                <Grid item container 
-                        direction='column' 
-                        md 
-                        alignItems='center'
-                        style={{
-                            maxWidth:'40em',
-                            marginBottom:matchesSM ? '10em' : 0,
-                            marginTop:matchesSM ? '10em' : 0
-                        }} 
-                >
-                    <Grid item>
-                        <img src='https://image.flaticon.com/icons/png/128/181/181095.png' alt='stopwatch' />
-                    </Grid>
-                </Grid>
-                <Grid item container 
-                        direction='column' 
-                        md 
-                        style={{maxWidth:'40em'}} 
-                        alignItems='center'
-                >
-                    <Grid item>
-                        <img src='https://image.flaticon.com/icons/png/128/181/181093.png' alt='cash' />
-                    </Grid>
-                </Grid>
-            </Grid> */}
-
         </Grid>
     )
 
