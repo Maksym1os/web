@@ -42,7 +42,7 @@ function History() {
           <tbody>
             {sortedUsers.map((data) => (
               <tr key={Math.random().toString(36).substr(2, 9)}>
-                <td data-column="TIME">{moment(Number(data.time)).format('h:mm A ll')}</td>
+                <td data-column="TIME">{moment(data.time).format('h:mm A ll')}</td>
                 <td data-column="FROM USER">{data.sender}</td>
                 <td data-column="TO USER">{data.recipient}</td>
                 <td data-column="AMOUNT(₴)">{data.amount}₴</td>
