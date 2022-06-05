@@ -40,7 +40,7 @@ function History() {
                 <th>TIME</th>
                 <th>FROM USER</th>
                 <th>TO USER</th>
-                <th>AMOUNT(₹)</th>
+                <th>AMOUNT(₴)</th>
                 <th>STATUS</th>
             </tr>
           </thead>
@@ -50,7 +50,7 @@ function History() {
              <td data-column="TIME">{moment(Number(data.time)).format('h:mm A ll')}</td>
              <td data-column="FROM USER">{data.from}</td>
             <td data-column="TO USER">{data.to}</td>
-            <td data-column="AMOUNT(₹)">{data.amount}₹</td>
+            <td data-column="AMOUNT(₴)">{data.amount}₴</td>
             <td data-column="STATUS">{data.status}</td>
             </tr>
             ))}
