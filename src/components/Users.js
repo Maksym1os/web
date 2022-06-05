@@ -18,7 +18,7 @@ export default function Users() {
       .catch(err => {
         console.error(err)
       })
-  }, [])
+  }, []) 
 
   return (
     <div style={{ marginBottom: '14em', marginTop: '2em' }}>
