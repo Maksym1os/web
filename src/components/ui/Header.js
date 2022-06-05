@@ -146,12 +146,11 @@ export default function Header(props){
         {name:'Home',link:'/',activeIndex:0},
         {name:'Users',link:'/users',activeIndex:1}, 
         {name:'All Transcation',link:'/history',activeIndex:2},
-        {name:'Register',link:'/create' ,activeIndex:3},
-        
+        {name:'Login',link:'/login' ,activeIndex:3}
     ];
 
-    if (jwt !== '')
-        routes.push({name:'Login',link:'/login' ,activeIndex:4})
+    if (jwt === '')
+        routes.push({name:'Register',link:'/create' ,activeIndex:4})
 
     useEffect(() => {
         [...routes].forEach(route=>{

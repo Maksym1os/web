@@ -60,11 +60,11 @@ function App() {
             />
             <Route exact path='/history' component={History} />
             <Route exact path='/transfer' component={Transfer} />
-            <Route exact path='/create' component={CreateUser} />
+            <Route exact path='/login' component={Login} />
             {/* <Route exact path='/login' component={Login} /> */}
             {
-                jwt !== '' ?
-                <Route exact path='/login' component={Login} /> : <Route/>
+                jwt === '' ?
+                <Route exact path='/create' component={CreateUser} /> : <Route/>
             }
             {/* <Route exact path='/about' component={AboutUs} /> */}
 

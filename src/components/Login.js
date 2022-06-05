@@ -1,10 +1,12 @@
 import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextField, CircularProgress, Snackbar } from '@material-ui/core';
-import React, { useState } from 'react';
-import { db } from "../firebase";
+import React, { useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import API from '../API';
+import { AuthContext } from './Context';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Login() {
+
+    const {setJwt, setUsername, setRole} = useContext(AuthContext)
+
 
     const classes = useStyles();
     const theme = useTheme();
@@ -70,23 +75,30 @@ export default function Login() {
         </React.Fragment>
     );
 
+    const history = useHistory();
+
     const Push = (e) => {
         e.preventDefault();
         setLoading(true);
 
-        db.collection("users").add({
-            name: name
-        }).then(() => {
-            // alert("Details have been saved")
-            setLoading(false);
-            setAlert({ open: true, color: "#4BB543" });
-            setAlertMesssage("Customer Created Successfully !!");
-        }).catch((error) => {
-            // alert(error.message) 
-            setLoading(false);
-            setAlert({ open: true, color: "#FF3232" });
-            setAlertMesssage("Something went wrong! Please try again.");
-        });
+        API.sendLoginRequest(name, passwordValues.password)
+            .then(res => {
+                setJwt(res.data.jwt)
+                setUsername(res.data.user.username)
+                setRole(res.data.user.role)
+                setAlert({ open: true, color: "#4BB543" })
+                setAlertMesssage("Successfully logged in !!")
+                history.push("/")
+            })
+            .catch(err => {
+                setAlert({ open: true, color: "#FF3232" });
+                setAlertMesssage("Something went wrong! Please try again.");
+                console.error(err)
+            })
+            .finally(
+                setLoading(false)
+            )
+
         setName('');
         setPassword('');
     }
