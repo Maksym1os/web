@@ -1,5 +1,5 @@
 import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextField, CircularProgress, Snackbar } from '@material-ui/core';
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
 
-    const {setJwt, setUsername, setRole} = useContext(AuthContext)
+    const { setJwt, setUsername } = useContext(AuthContext)
 
 
     const classes = useStyles();
@@ -85,7 +85,6 @@ export default function Login() {
             .then(res => {
                 setJwt(res.data.jwt)
                 setUsername(res.data.user.username)
-                setRole(res.data.user.role)
                 setAlert({ open: true, color: "#4BB543" })
                 setAlertMesssage("Successfully logged in !!")
                 history.push("/")

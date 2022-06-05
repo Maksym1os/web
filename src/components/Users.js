@@ -1,17 +1,9 @@
 import { Divider, Typography } from '@material-ui/core';
-import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { useMediaQuery, useTheme } from '@material-ui/core';
-// import { db } from '../firebase';
-// import {useNavigate} from "react-router-dom";
 import API from '../API';
-import { AuthContext } from './Context';
 
 export default function Users() {
-
-  const { jwt, role } = useContext(AuthContext)
-
-  const history = useHistory();
 
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -24,7 +16,6 @@ export default function Users() {
     API.getAllUsers()
       .then(res => setPosts(res.data))
       .catch(err => {
-        history.push("/create");
         console.error(err)
       })
   }, [])

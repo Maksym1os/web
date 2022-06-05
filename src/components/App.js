@@ -9,7 +9,6 @@ import Footer from './ui/Footer';
 import Header from './ui/Header';
 import theme from "./ui/Theme";
 import Users from './Users';
-// import './ui/App.css'
 import './ui/History.css'
 import LandingPage from './LandingPage';
 import { AuthContext } from "./Context";
@@ -19,8 +18,6 @@ function App() {
 
   const [jwt, setJwt] = useState('')
   const [username, setUsername] = useState('')
-  const [role,setRole] = useState('')
-
   const [value, setValue] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -30,8 +27,6 @@ function App() {
       setJwt,
       username,
       setUsername,
-      role,
-      setRole
     }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
@@ -64,13 +59,13 @@ function App() {
             <Route exact path='/logout' component={Logout} />
 
             {
-                !jwt ?
-                <Route exact path='/create' component={CreateUser} /> : <Route/>
+              !jwt ?
+                <Route exact path='/create' component={CreateUser} /> : <Route />
             }
 
             {
-                !jwt ?
-                <Route exact path='/login' component={Login} /> : <Route/>
+              !jwt ?
+                <Route exact path='/login' component={Login} /> : <Route />
             }
 
 
