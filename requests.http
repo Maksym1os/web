@@ -43,7 +43,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlb
 ###
 GET http://localhost:8000/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc
 ###
 PUT http://localhost:8000/user?username=Maksym_Los
 Content-Type: application/json
@@ -64,8 +64,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ha3N5bV9Mb3MiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NDM2MTIyNn0.aEcJJZ3eX2Sq4dxLOTwScORpdG2gn-m_NNFnfPipzBQ
 
 {
-  "recipient": "danylo",
-  "amount": 600
+  "recipient": "danylodawn1",
+  "amount": 1
 }
 
 ###
