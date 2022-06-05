@@ -13,6 +13,7 @@ import Users from './Users';
 import './ui/History.css'
 import LandingPage from './LandingPage';
 import { AuthContext } from "./Context";
+import Logout from './Logout';
 
 function App() {
 
@@ -60,13 +61,18 @@ function App() {
             />
             <Route exact path='/history' component={History} />
             <Route exact path='/transfer' component={Transfer} />
-            <Route exact path='/login' component={Login} />
-            {/* <Route exact path='/login' component={Login} /> */}
+            <Route exact path='/logout' component={Logout} />
+
             {
-                jwt === '' ?
+                !jwt ?
                 <Route exact path='/create' component={CreateUser} /> : <Route/>
             }
-            {/* <Route exact path='/about' component={AboutUs} /> */}
+
+            {
+                !jwt ?
+                <Route exact path='/login' component={Login} /> : <Route/>
+            }
+
 
           </Switch>
           {/*
