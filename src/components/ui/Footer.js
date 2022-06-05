@@ -5,38 +5,32 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 
 
-const useStyles = makeStyles(theme=>({
-    footer:{
-        background:theme.palette.common.blue,
-        top:"auto",
-        bottom:"0px",
+const useStyles = makeStyles(theme => ({
+    footer: {
+        background: theme.palette.common.black,
+        top: "auto",
+        bottom: "0px",
     },
-    center:{
-        margin:"0 auto"
+    center: {
+        margin: "0 auto"
     },
 }))
 
 export default function Footer() {
     const classes = useStyles();
 
-        return (
-            <div>
-                <AppBar className={classes.footer}>
-                    <Toolbar className={classes.center} >
-                        <div>
-                            <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
-                                    Made By  Maksym Los
-                            </Typography>
-                            <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
-                                {'Copyright © '}
-                                    RJTech.com                   {' '}
-                                {new Date().getFullYear()}
-                                {'.'}
-                            </Typography>
-                        </div>
-                    </Toolbar>
-                </AppBar>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <AppBar className={classes.footer}>
+                <Toolbar className={classes.center} >
+                    <div>
+                        <Typography variant="body2" style={{ color: 'white', textAlign: 'center' }}>
+                            Made By  Maksym Los
+                        </Typography>
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </div>
+    )
+}
 
