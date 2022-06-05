@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState ,useEffect, useContext} from 'react';
 import { AppBar, Button,IconButton,List,ListItem, Tab, Tabs} from '@material-ui/core';
 import  Toolbar  from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -9,7 +9,7 @@ import { useMediaQuery } from '@material-ui/core';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu'
 import { ListItemText } from '@material-ui/core';
-
+import { AuthContext } from '../Context';
 
 function ElevationScroll(props) {
     const { children} = props;
@@ -127,6 +127,10 @@ const useStyles = makeStyles(theme=>({
 
 
 export default function Header(props){
+
+    const {jwt, role} = useContext(AuthContext)
+
+
     const classes = useStyles();
     const theme = useTheme();
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -143,9 +147,12 @@ export default function Header(props){
         {name:'Users',link:'/users',activeIndex:1}, 
         {name:'All Transcation',link:'/history',activeIndex:2},
         {name:'Register',link:'/create' ,activeIndex:3},
-        {name:'Login',link:'/login' ,activeIndex:4},
-      
+        
     ];
+
+    if (jwt !== '')
+        routes.push({name:'Login',link:'/login' ,activeIndex:4})
+
     useEffect(() => {
         [...routes].forEach(route=>{
             switch (window.location.pathname) {

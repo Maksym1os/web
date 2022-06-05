@@ -2,9 +2,12 @@ import { Divider, Typography  } from '@material-ui/core';
 import React ,{useState,useEffect} from 'react';
 import { useMediaQuery,useTheme } from '@material-ui/core';
 import { db } from '../firebase';
-
+// import API from '../API';
 
 export default function Users() {
+
+    // const {jwt, role} = useContext(AuthContext)
+  
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesMD = useMediaQuery(theme.breakpoints.down('md'))
@@ -13,6 +16,7 @@ export default function Users() {
     const [posts, setPosts] = useState([]);
   useEffect(() => {
     const getDataFromFirebase = [];
+    // const users = API.getAllUsers(jwt);
     const subscriber = db.collection('users').onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         getDataFromFirebase.push({ ...doc.data(), key: doc.id });

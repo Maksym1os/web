@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@material-ui/styles';
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CreateUser from './CreateUser';
 import Login from './Login';
@@ -12,65 +12,77 @@ import Users from './Users';
 // import './ui/App.css'
 import './ui/History.css'
 import LandingPage from './LandingPage';
-// import {AuthContext} from "./Context";
+import { AuthContext } from "./Context";
 
 function App() {
-  // const [jwt, setJwt] = useState('')
-  const [value,setValue] = useState(0);
-  const [selectedIndex,setSelectedIndex] = useState(0)
+
+  const [jwt, setJwt] = useState('')
+  const [username, setUsername] = useState('')
+  const [role,setRole] = useState('')
+
+  const [value, setValue] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
-    
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Header value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
+    <AuthContext.Provider value={{
+      jwt,
+      setJwt,
+      username,
+      setUsername,
+      role,
+      setRole
+    }}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header value={value}
+            setValue={setValue}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
           />
           <Switch>
-          <Route exact path='/'  
-          render={(props)=>(
+            <Route exact path='/'
+              render={(props) => (
                 <LandingPage
-                  {...props} 
-                  setValue={setValue}
-                  setSelectedIndex={setSelectedIndex}
-                />
-              )} 
-            />
-          <Route exact path='/users'  
-              render={(props)=>(
-                <Users
-                  {...props} 
+                  {...props}
                   setValue={setValue}
                   setSelectedIndex={setSelectedIndex}
                 />
               )}
-          />
-          <Route exact path='/history' component={History} />
-          <Route exact path='/transfer' component={Transfer} />
-          <Route exact path='/create' component={CreateUser} />
-          <Route exact path='/login' component={Login} />
-                      {/* {
+            />
+            <Route exact path='/users'
+              render={(props) => (
+                <Users
+                  {...props}
+                  setValue={setValue}
+                  setSelectedIndex={setSelectedIndex}
+                />
+              )}
+            />
+            <Route exact path='/history' component={History} />
+            <Route exact path='/transfer' component={Transfer} />
+            <Route exact path='/create' component={CreateUser} />
+            {/* <Route exact path='/login' component={Login} /> */}
+            {
                 jwt !== '' ?
                 <Route exact path='/login' component={Login} /> : <Route/>
-            } */}
-          {/* <Route exact path='/about' component={AboutUs} /> */}
-         
+            }
+            {/* <Route exact path='/about' component={AboutUs} /> */}
+
           </Switch>
           {/*
          
          
           
           <Route exact path='/about' component={AboutUs} /> */}
-      <Footer value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex} 
-      />
-    </BrowserRouter>
+          <Footer value={value}
+            setValue={setValue}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
+          />
+        </BrowserRouter>
 
-    </ThemeProvider>
+      </ThemeProvider>
+    </AuthContext.Provider>
   );
 }
 
