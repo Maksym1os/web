@@ -122,15 +122,15 @@ export default function CreateUser() {
         setLoading(true);
 
         API.sendSignupRequest(name, email, phone, amount, passwordValues.password)
-        .then(() => {
-            setAlert({ open: true, color: "#4BB543" });
-            setAlertMesssage("User registered successfully !!");
-        }).catch((error) => {
-            setAlert({ open: true, color: "#FF3232" });
-            setAlertMesssage("Something went wrong! Please try again.");
-        }).finally(
-            setLoading(false)
-        )
+            .then(() => {
+                setAlert({ open: true, color: "#4BB543" });
+                setAlertMesssage("User registered successfully !!");
+            }).catch((error) => {
+                setAlert({ open: true, color: "#FF3232" });
+                setAlertMesssage("Something went wrong! Please try again.");
+            }).finally(
+                setLoading(false)
+            )
 
         setName('');
         setEmail('');
@@ -173,8 +173,6 @@ export default function CreateUser() {
                                 id="name"
                                 variant="outlined"
                                 fullWidth
-                                // error={senderEmailHelper.length !== 0}
-                                // helperText={senderEmailHelper}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -214,28 +212,28 @@ export default function CreateUser() {
                             />
                         </Grid>
                         <Grid>
-                        <Typography htmlFor="standard-adornment-password">
-                            Enter your Password
-                        </Typography>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            type={passwordValues.showPassword ? "text" : "password"}
-                            onChange={handlePasswordChange("password")}
-                            value={passwordValues.password}
-                            InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {passwordValues.showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                        />
+                            <Typography htmlFor="standard-adornment-password">
+                                Enter your Password
+                            </Typography>
+                            <TextField
+                                variant="outlined"
+                                fullWidth
+                                type={passwordValues.showPassword ? "text" : "password"}
+                                onChange={handlePasswordChange("password")}
+                                value={passwordValues.password}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {passwordValues.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
                         </Grid>
 
                         <Grid item container justifyContent='center' style={{ marginTop: '2em' }}>

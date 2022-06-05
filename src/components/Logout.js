@@ -5,11 +5,10 @@ import { Redirect } from 'react-router-dom';
 
 export default function Logout() {
 
-    const { setJwt, setUsername, setRole } = useContext(AuthContext)
+    const { setJwt, setUsername } = useContext(AuthContext)
 
     setJwt('')
     setUsername('')
-    setRole('')
 
     return (
         <Redirect exact path='/' component={LandingPage} />

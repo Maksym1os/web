@@ -63,37 +63,21 @@ export default function Transfer() {
   useEffect(() => {
     const getDataFromFirebase = [];
     API.getAllUsers().then(querySnapshot => {
-      querySnapshot.data.map(({_id, username}) => {
+      querySnapshot.data.map(({ _id, username }) => {
         getDataFromFirebase.push({ username, key: _id });
       });
       setUsers(getDataFromFirebase);
     });
   }, [])
 
-  const sendToTransfer = async () => {
-    
-    API.postTransaction(jwt, reciver.username, amt)
-      .then(() => {
-        setAlert({ open: true, color: "#4BB543" });
-        setAlertMesssage("Money Transferred Successfully !!!!");
-
-      }).catch((error) => {
-        setAlert({ open: true, color: "#FF3232" });
-        setAlertMesssage("Something went wrong! Please try again.");
-      })
-        .finally(setLoading(false));
-    
-    
-  }
-
   const transferMoney = async (e) => {
-    if (!jwt){
+    e.preventDefault();
+    if (!jwt) {
       setAlert({ open: true, color: "#FF3232" });
       setAlertMesssage("You are not authorized");
     }
 
 
-    e.preventDefault();
     setLoading(true);
 
     var rusr = users.filter(p => { return p.username === reciver });
@@ -114,11 +98,16 @@ export default function Transfer() {
     }
     else {
 
-      // setAlert({ open: true, color: "#FF3232" });
-      // setAlertMesssage(reciver);
-      sendToTransfer()
-      
-      // window.location.reload();
+      API.postTransaction(jwt, reciver, amt)
+        .then(() => {
+          setAlert({ open: true, color: "#4BB543" });
+          setAlertMesssage("Money Transferred Successfully !!!!");
+        }).catch(error => {
+          setAlert({ open: true, color: "#FF3232" });
+          setAlertMesssage("Something went wrong! Please try again.");
+        })
+        .finally(setLoading(false));
+
       setAmt(0);
       setReciver("");
       setSender("");
@@ -126,6 +115,7 @@ export default function Transfer() {
 
     }
   }
+
   const onAmountChange = (e) => {
     const amt = e.target.value;
     if (!amt || amt.match(/^\d{1,}(\.\d{0,2})?$/)) {
