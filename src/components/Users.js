@@ -42,7 +42,7 @@ export default function Users() {
               <th>NAME</th>
               <th>EMAIL</th>
               <th>PHONE NO.</th>
-              <th>BALANCE(₹)</th>
+              <th>BALANCE(₴)</th>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +51,7 @@ export default function Users() {
                 <td data-column="NAME">{data.username}</td>
                 <td data-column="Email">{data.email}</td>
                 <td data-column="Phone No">{data.phone}</td>
-                <td data-column="BALANCE(₹)">{data.amount}₹</td>
+                <td data-column="BALANCE(₴)">{data.amount}₴</td>
               </tr>
             ))}
           </tbody>

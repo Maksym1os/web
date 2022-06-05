@@ -137,8 +137,6 @@ export default function Login() {
                                 id="name"
                                 variant="outlined"
                                 fullWidth
-                                // error={senderEmailHelper.length !== 0}
-                                // helperText={senderEmailHelper}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />

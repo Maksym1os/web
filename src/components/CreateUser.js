@@ -1,10 +1,11 @@
 import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextField, CircularProgress, Snackbar } from '@material-ui/core';
 import React, { useState } from 'react';
-import { db } from "../firebase";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import API from '../API';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -120,22 +121,17 @@ export default function CreateUser() {
         e.preventDefault();
         setLoading(true);
 
-        db.collection("users").add({
-            name: name,
-            email: email,
-            phone: phone,
-            amount: amount
-        }).then(() => {
-            // alert("Details have been saved")
-            setLoading(false);
+        API.sendSignupRequest(name, email, phone, amount, passwordValues.password)
+        .then(() => {
             setAlert({ open: true, color: "#4BB543" });
-            setAlertMesssage("Customer Created Successfully !!");
+            setAlertMesssage("User registered successfully !!");
         }).catch((error) => {
-            // alert(error.message) 
-            setLoading(false);
             setAlert({ open: true, color: "#FF3232" });
             setAlertMesssage("Something went wrong! Please try again.");
-        });
+        }).finally(
+            setLoading(false)
+        )
+
         setName('');
         setEmail('');
         setPhone('');
