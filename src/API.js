@@ -9,6 +9,9 @@ const API = {
     sendSignupRequest: (username, email, phone, amount, password) =>
         axios.post('/signup', {username, email, phone, amount, password}),
 
+    getAllHistory: () =>
+        axios.get('/transactions'),
+
     getAllUsers: () =>
         axios.get('users')
 }
