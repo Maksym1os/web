@@ -10,7 +10,7 @@
 body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url(https://www.universities.guru/wp-content/uploads/2020/10/Lviv-Polytechnic-National-University-2-scaled.jpg);
+    url(https://img.freepik.com/free-photo/pink-piggy-bank-with-falling-coins-blue-background-financial-savings-banking-economy_486333-11.jpg);
   height: 100vh;
   -webkit-background-size: cover;
   background-size: cover;
@@ -29,8 +29,7 @@ body {
   text-align: center;
   h1 {
     @include color_w();
-    text-transform: uppercase;
-    font-size: 60px;
+    font-size: 50px;
   }
 }
 
