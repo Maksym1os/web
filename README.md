@@ -1,4 +1,4 @@
 **V-1**
 
 ### GitHub pages 
-* Home page: https://eyr1on.github.io/web/html/home.html
+* Home page: https://maksym1os.github.io/web/html/home.html
