@@ -127,7 +127,6 @@ export default function Header(props) {
     const routes = [
         { name: 'Home', link: '/', activeIndex: 0 },
         { name: 'Users', link: '/users', activeIndex: 1 },
-        { name: 'All Transcation', link: '/history', activeIndex: 2 },
     ];
 
     if (!jwt) {
@@ -181,18 +180,6 @@ export default function Header(props) {
                     />
                 ))}
             </Tabs>
-            <Button
-                variant='contained'
-                color='secondary'
-                style={{ color: 'white' }}
-
-                className={classes.button}
-                component={Link}
-                to='/transfer'
-                onClick={() => props.setValue(6)}
-            >
-                Transfer
-            </Button>
         </React.Fragment>
 
     );
@@ -229,28 +216,6 @@ export default function Header(props) {
                             </ListItemText>
                         </ListItem>
                     ))}
-                    <ListItem
-                        divider
-                        button
-                        component={Link}
-                        to='/transfer'
-                        classes={{
-                            root: classes.drawerItemEstimate,
-                            selected: classes.drawerItemSelected
-                        }}
-                        onClick={() => {
-                            setOpenDrawer(false);
-                            props.setValue(6)
-                        }}
-                        selected={props.value === 6}
-                    >
-                        <ListItemText
-                            className={classes.drawerItem}
-                            disableTypography
-                        >
-                            Transfer
-                        </ListItemText>
-                    </ListItem>
                 </List>
             </SwipeableDrawer>
             <IconButton className={classes.drawerIconContainer}
