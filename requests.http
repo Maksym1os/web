@@ -64,7 +64,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ha3N5bV9Mb3MiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NDM2MTIyNn0.aEcJJZ3eX2Sq4dxLOTwScORpdG2gn-m_NNFnfPipzBQ
 
 {
-  "recipient": "danylodawn1",
+  "recipient": "Test user",
   "amount": 1
 }
 
