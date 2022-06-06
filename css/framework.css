@@ -6,7 +6,6 @@
 .btn {
   display: inline-block;
   padding: 8px 18px 10px;
-  text-transform: uppercase;
   border: 1px solid; }
 
 .clear,
@@ -53,7 +52,6 @@ h6,
   font-size: 22px;
   line-height: normal;
   font-weight: normal;
-  text-transform: uppercase;
   color: #fff; }
 
 .heading-aud {
@@ -61,14 +59,12 @@ h6,
   font-size: 22px;
   line-height: normal;
   font-weight: normal;
-  text-transform: uppercase;
   color: #fff; }
 
 h1 {
   font-size: 22px;
   line-height: normal;
   font-weight: normal;
-  text-transform: uppercase;
   color: #fff; }
 
 .margin-150 {

@@ -49,7 +49,6 @@ body {
 
   h1 {
     @include color_w();
-    text-transform: uppercase;
     font-size: 30px;
   }
 }
