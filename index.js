@@ -1,53 +1,35 @@
 fetch("http://localhost:3000/signup", {
   "method": "POST",
   "headers": {
-    "user-agent": "vscode-restclient",
     "content-type": "application/json"
   },
   "body": JSON.stringify({
-    "username": "Maksym_Los",
+    "username": "Test user",
     "email": "maxlos@gmail.com",
-    "phone": "88005553535",
+    "phsone": "88005553535",
     "password": "qwerty",
-    "amount": "1000"
+    "amount": "653685"
   })
-})
-.then(response => {
-  console.log(response);
-})
-.catch(err => {
-  console.error(err);
-});
+}).then(response => { console.log(response); }).catch(err => { console.error(err); });
 
-fetch("http://localhost:3000/login", {
+
+fetch("http://localhost:8000/login", {
   "method": "POST",
   "headers": {
-    "user-agent": "vscode-restclient",
     "content-type": "application/json"
   },
   "body": JSON.stringify({
     "username": "Maksym_Los",
-    "password": "qwerty"
+    "password": "q",
   })
-})
-.then(response => {
-  console.log(response);
-})
-.catch(err => {
-  console.error(err);
-});
+}).then(response => { console.log(response); }).catch(err => { console.error(err); });
 
-fetch("http://localhost:3000/users", {
+
+fetch("http://localhost:8000/users", {
   "method": "GET",
   "headers": {
-    "user-agent": "vscode-restclient",
-    "content-type": "application/json",
-    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlbHljaGtvdnljaCIsImlhdCI6MTY1NDExMjE4MH0.ZqWi2uxEcFrJdxZm8KILwfkVoJqfd0VYP6biZY2xtRc"
+    "content-type": "application/json"
   }
-})
-.then(response => {
-  console.log(response);
-})
-.catch(err => {
-  console.error(err);
-});
+}).then(response => { console.log(response); }).catch(err => { console.error(err); });
+
+
