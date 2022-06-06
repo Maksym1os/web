@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "node-sass -w scss/ -o css/ --recursive"
+    "sass": "node-sass -w scss/ -o css/ --recursive",
+    "lint": "eslint ./index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^7.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0"
   }
 }

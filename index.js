@@ -1,14 +1,14 @@
-fetch("http://localhost:3000/signup", {
+fetch("http://localhost:8000/signup", {
   "method": "POST",
   "headers": {
     "content-type": "application/json"
   },
   "body": JSON.stringify({
-    "username": "Test user",
-    "email": "maxlos@gmail.com",
-    "phsone": "88005553535",
+    "username": "Vova Kuchkovskiy",
+    "email": "лuchkovskiy@gmail.com",
+    "phone": "05473456783",
     "password": "qwerty",
-    "amount": "653685"
+    "amount": "99999999999"
   })
 }).then(response => { console.log(response); }).catch(err => { console.error(err); });
 
