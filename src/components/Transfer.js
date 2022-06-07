@@ -98,13 +98,18 @@ export default function Transfer() {
     }
     else {
 
-      API.postTransaction(jwt, reciver, amt)
+      API.postTransaction(jwt, sender, reciver, amt)
         .then(() => {
           setAlert({ open: true, color: "#4BB543" });
           setAlertMesssage("Money Transferred Successfully !!!!");
-        }).catch(error => {
+        }).catch(function (error) {
           setAlert({ open: true, color: "#FF3232" });
+          if (error.response.status === 400) {
           setAlertMesssage("Something went wrong! Please try again.");
+          }
+          else if (error.response.status === 403){
+            setAlertMesssage("You are not authorized.");
+          }
         })
         .finally(setLoading(false));
 
