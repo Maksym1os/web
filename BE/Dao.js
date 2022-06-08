@@ -37,7 +37,7 @@ class Dao {
 
     getAllUsers = () => this.ifConnected(db => db.collection('user').find({}).toArray())
 
-    getAllTransactions = () => this.ifConnected(db => db.collection('transactions').find({}).toArray())
+    getAllTransactions = () => this.ifConnected(db => db.collection('transactions').find({}).sort({ _id: -1 }).toArray())
 
     ifConnected = dbAction => this.dbConnection ? this.dbConnection.then(dbAction) : Promise.reject('not connected')
 

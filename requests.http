@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
   "username": "Maksym_Los",
-  "password": "qwerty"
+  "password": "q"
 }
 
 ###
@@ -61,10 +61,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZlb
 ###
 POST http://localhost:8000/transact
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ha3N5bV9Mb3MiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NDM2MTIyNn0.aEcJJZ3eX2Sq4dxLOTwScORpdG2gn-m_NNFnfPipzBQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ha3N5bV9Mb3MiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NDY0NTI5MX0.0PjaVQNrARxAzhm8qySXBEVU_673WchpqSTX3OFXZic
 
 {
-  "recipient": "Test user",
+  "sender": "Maksym_Los",
+  "recipient": "danylodawn1",
   "amount": 1
 }
 

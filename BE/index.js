@@ -118,40 +118,45 @@ app.post('/login', (req, res) => {
 app.post('/transact',
     jwt({ secret: secret, algorithms: ["HS256"] }),
     (req, res) => {
-        Dao.getUserByUsername(req.auth.username)
-            .then(user => {
-                Dao.getUserByUsername(req.body.recipient)
-                    .then(recipient => {
-                        const amount = parseInt(req.body.amount)
+        if (req.auth.username !== req.body.sender)
+            res.sendStatus(403)
+        else {
+            Dao.getUserByUsername(req.auth.username)
+                .then(user => {
+                    Dao.getUserByUsername(req.body.recipient)
+                        .then(recipient => {
+                            const amount = parseInt(req.body.amount)
 
-                        if (user !== null && user.amount >= amount && recipient !== null) {
+                            if (user !== null && user.amount >= amount && recipient !== null) {
 
-                            var today = new Date();
-                            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-                            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                            var dateTime = date + ' ' + time;
-                            Dao.addTransaction({
-                                time: dateTime,
-                                recipient: recipient.username,
-                                sender: user.username,
-                                amount: amount
-                            })
+                                var today = new Date();
+                                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                var dateTime = date + ' ' + time;
+                                Dao.addTransaction({
+                                    time: dateTime,
+                                    recipient: recipient.username,
+                                    sender: user.username,
+                                    amount: amount
+                                })
 
-                            Dao.updateUser(user.username, {
-                                amount: user.amount - amount
-                            })
-                            Dao.updateUser(recipient.username, {
-                                amount: recipient.amount + amount
-                            })
+                                Dao.updateUser(user.username, {
+                                    amount: user.amount - amount
+                                })
+                                Dao.updateUser(recipient.username, {
+                                    amount: recipient.amount + amount
+                                })
 
-                            res.sendStatus(200)
-                        }
-                        else {
-                            res.sendStatus(400)
-                        }
-                    })
+                                res.sendStatus(200)
+                            }
+                            else {
+                                res.sendStatus(400)
+                            }
+                        })
 
-            })
+                })
+        }
+
 
     }
 )
