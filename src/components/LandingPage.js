@@ -54,7 +54,7 @@ export default function LandingPage(props) {
             >
                 <Grid item lg>
                     <img
-                        src='https://dhm.rw/IMG/arton78.jpg?1621277402'
+                        src='https://memepedia.ru/wp-content/uploads/2019/08/day-2-grivni-2-768x578.jpg'
                         alt='mountain'
                         style={{
                             maxWidth: matchesSM ? 300 : '40em',
