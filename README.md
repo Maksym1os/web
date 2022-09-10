@@ -5,6 +5,7 @@ Back end частина проекту
 
 # WEB
 
-> node run app
+> npm i
+> npm run app
 
 Then send requests from the [requests.http](REQUESTS.http) file
